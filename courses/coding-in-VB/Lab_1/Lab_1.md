@@ -14,13 +14,10 @@ This first Lab has the goal to get you started and help you to get more confiden
 6. After some free exploration, close the Codespace and delete it.
 
 ## Section II: (Optional) Setup the toolchain on your own machine
-1. Download and install [Visual Studio Code](https://code.visualstudio.com/download).
-2. Verify the successful installation by opening VS Code.
-3. Install the [C/C++ extension](https://code.visualstudio.com/docs/languages/cpp#_install-the-extension) in Visual Studio Code.
-4. Install a [C-Compiler](https://code.visualstudio.com/docs/languages/cpp#_set-up-your-c-environment) (MinGW or GCC) if not yet available on your machine.
-5. Set the path environment variable.
-6. Verify if the compiler was successful installed and configured by checking for the compiler version in a terminal.
-7. Download and install [Git](https://git-scm.com/install/). Set VS Code as default editor and "main" as default branch name.
+1. Download and install [Visual Studio](https://visualstudio.microsoft.com/de/downloads/).
+2. Run the downloaded VisualStudioSetup.exe.
+3. Select the .NET Package within the installation wizard.
+4. Download and install [Git](https://git-scm.com/install/). Set VS Code as default editor and "main" as default branch name.
 
 ## Section III: Working in the terminal
 

@@ -20,7 +20,7 @@ int main(void)
 
     for (int i = BOARD_SIZE; i > 0; i--)
     {
-        // Top Border and boder between rows
+        // Top Border and border between rows
         printf("  +");
         for (int k = 0; k <= 7; k++)
         {
@@ -33,7 +33,7 @@ int main(void)
         for (int j = 1; j <= BOARD_SIZE; j++)
         {
             // coloring of the fields
-            if ((j % 2) > 0)
+            if (((j + i) % 2) > 0)
             {
                 printf("|###");
             }

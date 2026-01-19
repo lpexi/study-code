@@ -2,11 +2,10 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "C/C++: gcc Aktive Datei kompilieren",
+            "label": "build (gcc ucrt64)",
             "type": "process",
             "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
             "args": [
-                "-fdiagnostics-color=always",
                 "-g",
                 "-Wall",
                 "${file}",
@@ -21,25 +20,6 @@
                 "kind": "build",
                 "isDefault": false
             }
-        },
-        {
-            "label": "C/C++: clang (MSYS2 CLANGARM64) Aktive Datei kompilieren",
-            "type": "process",
-            "command": "C:\\msys64\\clangarm64\\bin\\clang.exe",
-            "args": [
-                "-fcolor-diagnostics",
-                "-fansi-escape-codes",
-                "-g",
-                "-Wall",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": "$gcc",
-            "group": "build"
         },
         {
             "type": "cppbuild",

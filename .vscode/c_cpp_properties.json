@@ -33,7 +33,7 @@
             "defines": [
                 "_DEBUG"
             ],
-            "compilerPath": "/usr/bin/clang",
+            "compilerPath": "C:/msys64/clangarm64/bin/clang.exe",
             "intelliSenseMode": "macos-clang-x64"
         }
     ]

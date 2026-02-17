@@ -1,3 +1,7 @@
+/*
+ * File: gas_station.c
+ * Description: Short exercise to train structs and their handling as pointers.
+ */
 #include <stdio.h>
 
 typedef struct Car
@@ -8,14 +12,20 @@ typedef struct Car
 
 } Car;
 
-void refuel(Car *car, float fuel)
+/**
+ * @brief Refuel/Increase the fuel level of a given car.
+ *
+ * @param p_car [out] pointer to a car struct
+ * @param fuel [in]   amount of fuel to fill into the car
+ */
+void refuel(Car *p_car, float fuel)
 {
-    if ((car->fuel_level + fuel) > car->max_fuel_level)
+    if ((p_car->fuel_level + fuel) > p_car->max_fuel_level)
     {
         printf("Error: The maximum amount of fuel is succeded.");
         return;
     }
-    car->fuel_level = car->fuel_level + fuel;
+    p_car->fuel_level = p_car->fuel_level + fuel;
 }
 
 int main()

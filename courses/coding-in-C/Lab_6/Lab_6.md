@@ -1,6 +1,7 @@
 # Lab 6: Sensor Fusion
 
 ## Introduction
+
 In this lab exercise, you will process time-discrete sensor measurements and detect object occurrences based on sensor-specific thresholds.  
 You will use **structs**, **typedef**, and file input/output in C.  
 
@@ -15,8 +16,10 @@ The goal is to:
 No plotting is required; the focus is on **data processing and analysis**.
 
 ## Section I
+
 Write one or more small programs for the following functions
 to read or write data from/into a text-file.
+
 - fgetc()
 - fgets()
 - fscanf()
@@ -31,8 +34,10 @@ What happens when you move the file you are reading into another folder?
 What do you need to adjust to solve the issue?
 
 ## Section II
+
 Create a struct named Car with three fields: fuel_level and max_fuel_level (float) and model (char array).
 Write a function called refuel() that:
+
 - Takes a pointer to a Car struct.
 - Takes an amount (float) of fuel to add.
 - increases the car's current fuel level if it does not exceed the max_fuel_level of the car.
@@ -65,14 +70,14 @@ Two measurement files are provided:
 
 Each file contains two columns:
 
-
 - Time in seconds (0 to 60 s, step 0.02 s)  
 - Signal probability (0 to 1)  
 
 For each sensor, a threshold value is provided which determines if the probability is high enough and an object detection can be derived
 
-- `sensor 1`: threshold 0.8 
+- `sensor 1`: threshold 0.8
 - `sensor 2`: threshold 0.7  
+
 ---
 
 #### Program Tasks

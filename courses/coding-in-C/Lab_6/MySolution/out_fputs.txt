@@ -1,0 +1,3 @@
+First line written with fputs()
+Second line written with fputs()
+Third line written with fputs()

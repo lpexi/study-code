@@ -1,0 +1,2 @@
+Hello from fputc!
+This file was written char by char.

@@ -350,12 +350,14 @@ As programs grow, code must be **structured into modules**. Modularization impro
 ### 13.1 What Is a Module?
 
 A module typically consists of:
+
 - one **source file** (`.c`)
 - one **header file** (`.h`)
 
 Each module should implement **one clear responsibility**.
 
 Example:
+
 - `calculator.c` – implementation
 - `calculator.h` – interface
 
@@ -364,11 +366,13 @@ Example:
 ### 13.2 Header Files (`.h`)
 
 Header files contain:
+
 - function declarations
 - type definitions (`struct`, `enum`)
 - constants
 
 Header files must **not** contain:
+
 - function implementations
 - global variable definitions
 

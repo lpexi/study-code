@@ -3,14 +3,17 @@
     "tasks": [
         {
             "label": "build (c)",
-            "type": "shell",
-            "command": "cc",
+            "type": "process",
+            "command": "C:/msys64/clangarm64/bin/gcc.exe",
             "args": [
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}.exe"
             ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
             "group": {
                 "kind": "build",
                 "isDefault": false
@@ -21,18 +24,51 @@
         },
         {
             "label": "build (c++)",
-            "type": "shell",
-            "command": "g++",
+            "type": "process",
+            "command": "C:/msys64/clangarm64/bin/g++.exe",
             "args": [
                 "-std=c++20",
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}.exe"
             ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
             "problemMatcher": [
                 "$gcc"
             ]
+        },
+        {
+            "label": "run (c)",
+            "type": "process",
+            "command": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "options": {
+                "cwd": "${fileDirname}",
+                "env": {
+                    "PATH": "C:\\msys64\\clangarm64\\bin;${env:PATH}"
+                }
+            },
+            "dependsOn": "build (c)",
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "run (c++)",
+            "type": "process",
+            "command": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "options": {
+                "cwd": "${fileDirname}",
+                "env": {
+                    "PATH": "C:\\msys64\\clangarm64\\bin;${env:PATH}"
+                }
+            },
+            "dependsOn": "build (c++)",
+            "dependsOrder": "sequence"
         }
     ]
 }

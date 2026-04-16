@@ -4,9 +4,9 @@
 #include <iostream>
 #include <limits>
 
-void readScore(const std::string &text, std::uint_fast8_t &value)
+void readScore(const std::string &text, std::uint_fast16_t &value)
 {
-    const std::uint_fast8_t max_points = 100;
+    const std::uint_fast16_t MAX_POINTS = 100;
 
     while (true)
     {
@@ -16,10 +16,11 @@ void readScore(const std::string &text, std::uint_fast8_t &value)
         {
             std::cout << "Error: Not a valid number. Please try again. \n";
             std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             continue;
         }
 
-        if (value > max_points)
+        if (value > MAX_POINTS)
         {
             std::cout << "Error: Not in the valid number range. Please try again. \n";
             continue;
@@ -29,9 +30,9 @@ void readScore(const std::string &text, std::uint_fast8_t &value)
 }
 
 void readStudentData(std::string &name,
-                     std::uint_fast8_t &homework,
-                     std::uint_fast8_t &midterm,
-                     std::uint_fast8_t &final_exam)
+                     std::uint_fast16_t &homework,
+                     std::uint_fast16_t &midterm,
+                     std::uint_fast16_t &final_exam)
 {
     std::cout << "Enter the student's name: ";
     std::cin >> std::ws;
@@ -46,9 +47,9 @@ void readStudentData(std::string &name,
     readScore("Enter final exam score: ", final_exam);
 }
 
-void calculateGrade(std::uint_fast8_t &homework,
-                    std::uint_fast8_t &midterm,
-                    std::uint_fast8_t &final_exam,
+void calculateGrade(std::uint_fast16_t &homework,
+                    std::uint_fast16_t &midterm,
+                    std::uint_fast16_t &final_exam,
                     float &final_grade,
                     std::string &letter_grade)
 {
@@ -94,5 +95,47 @@ void calculateGrade(std::uint_fast8_t &homework,
         letter_grade = "F";
     }
 
+}
+
+void printReport(const std::string &name,
+                 std::uint_fast16_t &homework,
+                 std::uint_fast16_t &midterm,
+                 std::uint_fast16_t &final_exam,
+                 float final_grade,
+                 const std::string &letter_grade)
+{
+    std::string status = "";
+
+    if (letter_grade == "A" || letter_grade == "B" || letter_grade == "C")
+    {
+        status = "PASS";
+    }
+
+    else if (letter_grade == "D" || letter_grade == "E")
+    {
+        status = "CONDITIONAL PASS";
+    }
+    
+    else if (letter_grade == "F")
+    {
+        status = "FAIL";
+    }
+
+    std::cout << std::endl;
+    std::cout << std::setfill('-') << std::setw(30) << "" << std::endl;
+    std::cout << std::left << std::setfill(' ') << "Student Report" << std::endl;
+    std::cout << std::setfill('-') << std::setw(30) << "" << std::endl;
+    std::cout << std::left << std::setfill(' ') << "Name: " << name << std::endl
+              << std::endl;
+    std::cout << "Scores" << std::endl;
+    std::cout << std::setfill('-') << std::setw(30) << "" << std::endl;
+    std::cout << std::left << std::setfill(' ') << std::setw(20) << "Homework" << std::right << ": " << std::fixed << std::setprecision(2) << static_cast<double>(homework) << std::endl;
+    std::cout << std::left << std::setfill(' ') << std::setw(20) << "Midterm" << std::right << ": " << std::fixed << std::setprecision(2) << static_cast<double>(midterm) << std::endl;
+    std::cout << std::left << std::setfill(' ') << std::setw(20) << "Final Exam" << std::right << ": " << std::fixed << std::setprecision(2) << static_cast<double>(final_exam) << std::endl;
+    std::cout << std::endl;
+    std::cout << std::left << std::setfill(' ') << std::setw(20) << "Final Grade" << std::right << ": " << std::fixed << std::setprecision(2) << final_grade << std::endl;
+    std::cout << std::left << std::setfill(' ') << std::setw(20) << "Letter Grade" << std::right << ": " << letter_grade << std::endl;
+    std::cout << std::left << std::setfill(' ') << std::setw(20) << "Status" << std::right << ": " << status << std::endl;
+    std::cout << std::setfill('-') << std::setw(30) << "" << std::endl;
 }
 

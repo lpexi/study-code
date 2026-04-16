@@ -13,9 +13,9 @@
  * @param[in]   finam_exam      Final exam result
  */
 void readStudentData(std::string &name,
-                     std::uint_fast8_t &homework,
-                     std::uint_fast8_t &midterm,
-                     std::uint_fast8_t &final_exam);
+                     std::uint_fast16_t &homework,
+                     std::uint_fast16_t &midterm,
+                     std::uint_fast16_t &final_exam);
 
 /**
  * @brief Calculates the results
@@ -26,9 +26,9 @@ void readStudentData(std::string &name,
  * @param[out]  final_grade     The final grade as a number value
  * @param[out]  letter_grade    The final grade a s letter 
  */
-void calculateGrade(std::uint_fast8_t &homework,
-                    std::uint_fast8_t &midterm,
-                    std::uint_fast8_t &final_exam,
+void calculateGrade(std::uint_fast16_t &homework,
+                    std::uint_fast16_t &midterm,
+                    std::uint_fast16_t &final_exam,
                     float &final_grade,
                     std::string &letter_grade);
 
@@ -43,9 +43,9 @@ void calculateGrade(std::uint_fast8_t &homework,
  * @param[out]  letter_grade    The final grade a s letter 
  */
 void printReport(const std::string &name,
-                 std::uint_fast8_t &homework,
-                 std::uint_fast8_t &midterm,
-                 std::uint_fast8_t &final_exam,
+                 std::uint_fast16_t &homework,
+                 std::uint_fast16_t &midterm,
+                 std::uint_fast16_t &final_exam,
                  float final_grade,
                  const std::string &letter_grade);
 

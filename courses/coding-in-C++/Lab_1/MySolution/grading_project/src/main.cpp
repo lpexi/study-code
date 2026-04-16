@@ -6,9 +6,9 @@
 int main()
 {
     std::string name;
-    std::uint_fast8_t homework = 0;
-    std::uint_fast8_t midterm = 0;
-    std::uint_fast8_t final_exam = 0;
+    std::uint_fast16_t homework = 0;
+    std::uint_fast16_t midterm = 0;
+    std::uint_fast16_t final_exam = 0;
     float final_grade = 0.0;
     std::string letter_grade;
 

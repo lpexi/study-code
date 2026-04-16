@@ -1,3 +1,5 @@
+#include "../include/report_utils.hpp"
+
 #include <iomanip>
 #include <iostream>
 #include <limits>

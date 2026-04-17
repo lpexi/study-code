@@ -318,3 +318,78 @@ Additionally, implement the following functionality:
    - returning or printing only the first `maxResults` matches
 
 - Demonstrate the functionality in `main()` with multiple resources and at least two different queries
+
+### 🟢 Section VI: Fluent Query Builder
+
+In this task you will implement a small helper class for building search queries using **method chaining** and **constexpr values**.
+
+---
+
+### 📘 Task Description
+
+Implement a class `QueryBuilder` that allows constructing a search query step by step using a fluent interface.
+
+The goal is to enable code like this:
+
+```cpp
+QueryBuilder qb;
+qb.setText("C++")
+  .setMaxResults(5)
+  .enableCaseSensitive(false)
+  .build()
+  .print();
+```
+
+---
+
+### Requirements
+
+- The class should contain at least:
+   - `std::string text`
+   - `int maxResults`
+   - `bool caseSensitive`
+
+- Define a constant value for the maximum number of results
+- This constant should be available at compile-time
+- Use this value to initialize `maxResults`
+
+- The class should have at least the following methods:
+   - `setText(const std::string& text)`
+   - `setMaxResults(int maxResults)`
+   - `enableCaseSensitive(bool enabled)`
+
+Method Chaining should be enabled. I.e. all setter methods must:
+   - modify the object state  
+   - return a reference to the current object (`*this`)
+
+
+In addition, the following methods need to be implemented:
+#### build()
+
+- Returns the fully constructed query object  
+- You may:
+  - return the builder itself **or**
+  - define a small `SearchQuery` struct/class and return that  
+
+#### print()
+
+- Outputs all current values in a readable format  
+
+---
+
+### Additional Constraints
+
+- Use `const std::string&` where appropriate  
+- At least one method must be marked as `const`  
+- Ensure reasonable default values using `constexpr`  
+- Prevent invalid values (e.g. negative `maxResults`)
+
+---
+
+### Example Output
+
+```text
+Query: C++
+Max Results: 5
+Case Sensitive: false
+```

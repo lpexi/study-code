@@ -86,6 +86,8 @@ int main()
 
     // Section III
     // Task 9a
+    std::cout << '\n'
+              << "-------------Task 8-------------" << '\n';
     std::vector<int> intData = {4, 7, 2, 9};
     std::vector<double> doubleData = {2.5, 3.0, 4.5, 1.0};
 

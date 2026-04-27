@@ -1,0 +1,4 @@
+{
+    "lldb-dap.captureSessionLogs": true,
+    "C_Cpp.default.compilerPath": "C:/msys64/clangarm64/bin/g++.exe"
+}

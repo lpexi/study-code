@@ -1,0 +1,5 @@
+=== Student Report (fprintf) ===
+Name: Alice
+Age: 19
+Grade: 1.70
+Formatted number example: 42 3.142

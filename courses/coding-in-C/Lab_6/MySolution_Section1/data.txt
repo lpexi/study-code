@@ -1,3 +1,0 @@
-Alice 19 1.72
-Bob 21 1.80
-Charlie 20 1.75

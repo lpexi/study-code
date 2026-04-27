@@ -1,4 +1,5 @@
 # C++ Coding Conventions
+
 ## Intermediate Guidelines for Second-Semester Students
 
 This document defines a practical set of **C++ coding conventions** for students who already know basic C and now move toward **modular, object-oriented, and safer software development** in C++.
@@ -24,6 +25,7 @@ The goal is not only “code that works”, but code that is:
 - Safety and readability are usually more important than saving one line of code.
 
 ### Good
+
 ```cpp
 if (temperature_celsius > MAX_TEMPERATURE_CELSIUS)
 {
@@ -32,6 +34,7 @@ if (temperature_celsius > MAX_TEMPERATURE_CELSIUS)
 ```
 
 ### Bad
+
 ```cpp
 if (t > 80) shutdown_heater();   // unclear variable name, magic number, no braces
 ```
@@ -49,11 +52,12 @@ Use names that describe purpose clearly.
 - **Namespaces:** `lower_snake_case`
 - **Constants:** `UPPER_SNAKE_CASE`
 - **Classes / structs / enums:** `PascalCase`
-- **Pointers:** start with __p___ or __ptr___
+- **Pointers:** start with **p**_or **ptr**_
 
 **Important: No matter what style you choose: Be consistent in your usage.**
 
 ### Good
+
 ```cpp
 class MotorController
 {
@@ -67,6 +71,7 @@ const int MAX_BUFFER_SIZE = 128;
 ```
 
 ### Bad
+
 ```cpp
 class motorcontroller
 {
@@ -95,6 +100,7 @@ Consistency is mandatory.
 - Add one empty line between logical blocks.
 
 ### Good
+
 ```cpp
 for (int index = 0; index < value_count; index++)
 {
@@ -103,6 +109,7 @@ for (int index = 0; index < value_count; index++)
 ```
 
 ### Bad
+
 ```cpp
 for(int i=0;i<value_count;i++) process_value(values[i]);
 ```
@@ -123,6 +130,7 @@ As projects grow, source code must be split into modules.
 - File names should reflect the contained type or module purpose.
 
 ### Good
+
 ```cpp
 // File: motor_controller.hpp
 class MotorController
@@ -142,6 +150,7 @@ void MotorController::start()
 ```
 
 ### Bad
+
 ```cpp
 // everything.cpp
 // contains 8 unrelated classes and utility functions
@@ -166,6 +175,7 @@ Header files define interfaces and must stay clean.
   - global object definitions
 
 ### Good
+
 ```cpp
 #ifndef MOTOR_CONTROLLER_HPP
 #define MOTOR_CONTROLLER_HPP
@@ -180,6 +190,7 @@ public:
 ```
 
 ### Bad
+
 ```cpp
 #include <iostream>
 #include <vector>
@@ -206,14 +217,15 @@ Comments explain **intent**, assumptions, and design decisions. They should not 
 
 - Each source file should begin with a short file header.
 - Public functions should be documented including:
-   - Return values
-   - Parameters
+  - Return values
+  - Parameters
 - Explain **why**, not every trivial **what**.
 - Below is an **example** on how a function could be documented.
 
 Note: You can select your own style according to the rules above; just be consistent.
 
 ### Good
+
 ```cpp
 /**
  * @brief Calculates the average temperature.
@@ -229,6 +241,7 @@ double calculate_average(const double values[], int value_count);
 ```
 
 ### Bad
+
 ```cpp
 // increment i
 i++;
@@ -253,6 +266,7 @@ Variables must be understandable, initialized, and used responsibly.
 - Each variable should be used at least once.
 
 ### Good
+
 ```cpp
 int retry_count = 0;
 double measured_voltage = 0.0;
@@ -260,6 +274,7 @@ bool is_system_ready = false;
 ```
 
 ### Bad
+
 ```cpp
 int a, b, c;
 double voltage;
@@ -282,6 +297,7 @@ Unnamed numbers make code harder to understand.
 - Choose meaningful names.
 
 ### Good
+
 ```cpp
 const int MAX_LOGIN_ATTEMPTS = 3;
 
@@ -292,6 +308,7 @@ if (attempt_count >= MAX_LOGIN_ATTEMPTS)
 ```
 
 ### Bad
+
 ```cpp
 if (attempt_count >= 3)
 {
@@ -314,6 +331,7 @@ C++ gives many type features. Use them explicitly and carefully.
 - Avoid mixing signed and unsigned values carelessly.
 
 ### Good
+
 ```cpp
 enum class MotorState
 {
@@ -326,6 +344,7 @@ MotorState state = MotorState::Stopped;
 ```
 
 ### Bad
+
 ```cpp
 enum MotorState
 {
@@ -338,16 +357,20 @@ int state = 0;
 ```
 
 ### Good
+
 ```cpp
 double voltage = 12.7;
 int rounded_voltage = static_cast<int>(voltage);
 ```
 
 ### Bad
+
 ```cpp
 int rounded_voltage = voltage;   // implicit conversion
 ```
+
 ---
+
 ## 10. Functions
 
 Functions should be small, focused, and easy to test.
@@ -361,6 +384,7 @@ Functions should be small, focused, and easy to test.
 - Each function parameter should be used or removed.
 
 ### Good
+
 ```cpp
 int calculate_sum(int first_value, int second_value)
 {
@@ -369,6 +393,7 @@ int calculate_sum(int first_value, int second_value)
 ```
 
 ### Bad
+
 ```cpp
 int calc(int a, int b, int c)
 {
@@ -377,6 +402,7 @@ int calc(int a, int b, int c)
 ```
 
 ### Good
+
 ```cpp
 bool is_temperature_valid(double temperature_celsius)
 {
@@ -385,6 +411,7 @@ bool is_temperature_valid(double temperature_celsius)
 ```
 
 ### Bad
+
 ```cpp
 bool check(double x)
 {
@@ -406,6 +433,7 @@ Choose parameter passing deliberately.
 - Output parameters should be avoided when a return value is clearer.
 
 ### Good
+
 ```cpp
 int increment(int value)
 {
@@ -416,11 +444,13 @@ void print_message(const std::string& message);
 ```
 
 ### Bad
+
 ```cpp
 void print_message(std::string message);   // unnecessary copy
 ```
 
 ### Good
+
 ```cpp
 void reset_counter(int& counter)
 {
@@ -429,6 +459,7 @@ void reset_counter(int& counter)
 ```
 
 ### Bad
+
 ```cpp
 void reset_counter(int counter)   // caller expects change, but gets copy
 {
@@ -450,6 +481,7 @@ Pointers are powerful but risky. Use them only when needed.
 - Use `nullptr`, never `NULL` in modern C++.
 
 ### Good
+
 ```cpp
 int value = 5;
 int* p_value = &value;
@@ -461,12 +493,14 @@ if (p_value != nullptr)
 ```
 
 ### Bad
+
 ```cpp
 int* p_value;
 *p_value = 10;   // uninitialized pointer
 ```
 
 ### Good
+
 ```cpp
 void update_speed(int& speed_rpm)
 {
@@ -475,12 +509,14 @@ void update_speed(int& speed_rpm)
 ```
 
 ### Bad
+
 ```cpp
 void update_speed(int* p_speed_rpm)   // pointer not necessary if null is invalid
 {
     *p_speed_rpm += 100;
 }
 ```
+
 ---
 
 ## 13. Global Variables
@@ -493,11 +529,13 @@ Global state makes software harder to understand and test.
 - Prefer passing data through parameters or class members.
 
 ### Good
+
 ```cpp
 const int DEFAULT_PORT = 8080;
 ```
 
 ### Bad
+
 ```cpp
 int g_error_count = 0;
 bool g_system_running = false;
@@ -517,6 +555,7 @@ Control flow must be simple and explicit.
 - Conditions must be easy to understand.
 
 ### Good
+
 ```cpp
 bool process_value(int value)
 {
@@ -535,6 +574,7 @@ bool process_value(int value)
 ```
 
 ### Bad
+
 ```cpp
 bool process_value(int value)
 {
@@ -569,6 +609,7 @@ bool process_value(int value)
 - Use `break` intentionally and visibly.
 
 ### Good
+
 ```cpp
 for (int index = 0; index < 10; index++)
 {
@@ -577,6 +618,7 @@ for (int index = 0; index < 10; index++)
 ```
 
 ### Bad
+
 ```cpp
 for (;;)
 {
@@ -585,6 +627,7 @@ for (;;)
 ```
 
 ### Good
+
 ```cpp
 switch (command)
 {
@@ -603,6 +646,7 @@ default:
 ```
 
 ### Bad
+
 ```cpp
 switch (command)
 {
@@ -626,6 +670,7 @@ Expressions must remain simple and unambiguous.
 - Split complex logic into intermediate variables.
 
 ### Good
+
 ```cpp
 const bool is_in_valid_range =
     (temperature_celsius >= MIN_TEMPERATURE_CELSIUS) &&
@@ -633,6 +678,7 @@ const bool is_in_valid_range =
 ```
 
 ### Bad
+
 ```cpp
 if (a + b * c - d / e > f && x++ < y--)
 {
@@ -657,19 +703,23 @@ Casting is a warning sign and should be rare.
 - Never use casts to silence warnings without understanding the issue.
 
 ### Good
+
 ```cpp
 double average = static_cast<double>(sum) / count;
 ```
 
 ### Bad
+
 ```cpp
 double average = (double)sum / count;
 ```
 
 ### Bad
+
 ```cpp
 int value = reinterpret_cast<int>(pointer);   // dangerous and usually unjustified
 ```
+
 ---
 
 ## 18. Error Handling
@@ -684,6 +734,7 @@ Errors must be detected and handled explicitly.
 - Error-handling code must be clear and testable.
 
 ### Good
+
 ```cpp
 bool divide(double dividend, double divisor, double& result)
 {
@@ -698,12 +749,14 @@ bool divide(double dividend, double divisor, double& result)
 ```
 
 ### Bad
+
 ```cpp
 double divide(double dividend, double divisor)
 {
     return dividend / divisor;   // division by zero not handled
 }
 ```
+
 ---
 
 ## 19. Classes and Encapsulation
@@ -718,6 +771,7 @@ Classes should protect their internal state and expose a clear interface.
 - A class should have one clear responsibility.
 
 ### Good
+
 ```cpp
 class BankAccount
 {
@@ -731,6 +785,7 @@ public:
 ```
 
 ### Bad
+
 ```cpp
 class BankAccount
 {
@@ -752,6 +807,7 @@ Objects must start in a valid state.
 - Avoid complex logic in constructors.
 
 ### Good
+
 ```cpp
 class Plane
 {
@@ -768,6 +824,7 @@ public:
 ```
 
 ### Bad
+
 ```cpp
 class Plane
 {
@@ -798,6 +855,7 @@ Use `const` to express read-only intent.
 - `const` increases safety and documents intent.
 
 ### Good
+
 ```cpp
 class Sensor
 {
@@ -815,6 +873,7 @@ void print_name(const std::string& name);
 ```
 
 ### Bad
+
 ```cpp
 class Sensor
 {
@@ -845,11 +904,13 @@ Manual memory management must be minimized.
 - Never mix `new/delete` with `malloc/free`.
 
 ### Good
+
 ```cpp
 Sensor sensor;
 ```
 
 ### Bad
+
 ```cpp
 Sensor* p_sensor = new Sensor();
 // ...
@@ -857,6 +918,7 @@ free(p_sensor);   // wrong deallocation mechanism
 ```
 
 ### Good
+
 ```cpp
 Sensor* p_sensor = new Sensor();
 // ...
@@ -865,6 +927,7 @@ p_sensor = nullptr;
 ```
 
 ### Bad
+
 ```cpp
 Sensor* p_sensor = new Sensor();
 // forgot delete => memory leak
@@ -883,6 +946,7 @@ Inheritance is powerful, but it should be used carefully.
 - Avoid deep inheritance hierarchies.
 
 ### Good
+
 ```cpp
 class Shape
 {
@@ -899,6 +963,7 @@ public:
 ```
 
 ### Bad
+
 ```cpp
 class Printer : public Logger : public Device : public BaseObject
 {
@@ -920,6 +985,7 @@ Use dynamic polymorphism intentionally.
 - Keep interfaces small and meaningful.
 
 ### Good
+
 ```cpp
 class Animal
 {
@@ -936,6 +1002,7 @@ public:
 ```
 
 ### Bad
+
 ```cpp
 class Animal
 {
@@ -962,6 +1029,7 @@ Static members belong to the class, not to an object instance.
 - Static methods must not depend on object state.
 
 ### Good
+
 ```cpp
 class Counter
 {
@@ -982,6 +1050,7 @@ public:
 ```
 
 ### Bad
+
 ```cpp
 class Counter
 {
@@ -1004,14 +1073,16 @@ Use the C++ standard library consciously.
 
 - Prefer `std::string` over raw C strings in normal C++ code.
 - Prefer standard containers over manual arrays when appropriate.
-- Do not use the keyword __using__ especially in larger projects.
+- Do not use the keyword **using** especially in larger projects.
 
 ### Good
+
 ```cpp
 std::string user_name = "Alice";
 ```
 
 ### Bad
+
 ```cpp
 char user_name[100];
 strcpy(user_name, "Alice");
@@ -1028,16 +1099,19 @@ strcpy(user_name, "Alice");
 - Avoid macros for constants and preprocessor tricks unless absolutely necessary.
 
 ### Good
+
 ```cpp
 const int MAX_RETRY_COUNT = 5;
 ```
 
 ### Bad
+
 ```cpp
 #define MAX_RETRY_COUNT 5
 ```
 
 ### Bad
+
 ```cpp
 goto error_handler;
 ```

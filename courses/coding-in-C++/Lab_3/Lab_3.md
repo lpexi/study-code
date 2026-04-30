@@ -132,13 +132,14 @@ You will extend a simple class hierarchy to model different types of users in a 
 
 ### 📘 Requirements
 
-Start with a base class **User**.
+Start with a base class __User__.
 
 Use the following UML class diagram:
 
 ![User UML](lab3_sectionII.svg)
 
 The diagram specifies:
+
 - attributes (including visibility)
 - constructor
 - member functions
@@ -175,6 +176,7 @@ The diagram specifies:
 - Use initializer lists to call the base class constructor  
 
 To test the classes in main:
+
 - Create objects of:
   - `Student`
   - `Instructor`  
@@ -195,7 +197,7 @@ To test the classes in main:
 
 In this section you will analyze an existing UML class diagram and evaluate whether the object-oriented design is reasonable.
 
-Unlike previous tasks, you are **not creating a design from scratch**, but reviewing and improving an existing one.
+Unlike previous tasks, you are __not creating a design from scratch__, but reviewing and improving an existing one.
 
 ---
 
@@ -317,6 +319,7 @@ A `Mage` has:
 - mana points
 
 Both types can regenerate their specific points and have a method to display their status including:
+
 - name
 - their type
 - health points
@@ -345,6 +348,7 @@ A `Weapon` has:
 - a damage value
 
 In addition, there are jobs with specific skills which are based on exactly one of these two character types such as:
+
 - Thief (can steal from enemies)
 - Healer (can heal other characters and himself)
 
@@ -370,9 +374,11 @@ The Healer can:
 
 ⚙️ Healing Behavior
 Implement a method:
+
 ```c++
 Healer& heal(Character& target);
 ```
+
 The method increases the health points of the target
 
 ---
@@ -396,7 +402,7 @@ Implement a method:
 
     Thief& steal(Character& target);
 
-The method tries to transfer **one item** from the target’s inventory to the thief’s inventory.
+The method tries to transfer __one item__ from the target’s inventory to the thief’s inventory.
 
 A possible rule:
 
@@ -417,8 +423,8 @@ The method should return the calling object to allow method chaining.
 
 ### 🧩 Design Constraint
 
-- The `Thief` must **not** access the target’s inventory directly  
-- All interactions with an inventory must happen through its **public methods**  
+- The `Thief` must __not__ access the target’s inventory directly  
+- All interactions with an inventory must happen through its __public methods__  
 
 ---
 
@@ -456,6 +462,7 @@ Explain why you selected the relation types you used between the created classes
 Implement the designed UML architecture and write the logic based on the requirements.
 
 Answer the following questions:
+
 - Why is friend used instead of a public setter for health points? What is the benefit?
 - What would happen if multiple classes were declared as ```friend```?
 - Why is stealing implemented through public `Inventory` methods instead of direct access to private inventory data?
@@ -466,11 +473,12 @@ Answer the following questions:
 ### 🟡 Task Part 3 – Main
 
 Test your program in a main function:
+
 - Create 3-4 characters of different types
 - Call the various methods to ensure correct behavior of your program
 - Use method chaining where possible
 
 Special task:
+
 - Add all characters into one array
 - Print out the current character level of each array element
-

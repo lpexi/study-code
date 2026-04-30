@@ -4,9 +4,11 @@
 class BankAccount
 {
 private:
-    std::string owner = "default";
-    double balance = 0.0;
+    std::string owner;
+    double balance;
+    
 public:
+    BankAccount() : balance(0.0) {}
     void setOwner(std::string newOwner)
     {
         this->owner = newOwner;
@@ -73,3 +75,5 @@ int main()
     myAccount.getAccountInfo();
     return 0;
 }
+
+// in the standart code, balence dose not get initilized. this is fixed by calling a constructor to initialize the variable.

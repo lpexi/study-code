@@ -156,3 +156,109 @@ Create at least two specific shapes that inherit from your base class.
 2. What is the difference between overriding and overloading?  
 3. What is a pure virtual function?  
 4. Why are abstract classes useful?  
+
+## 🟢 Section III: Bug Hunt: Polymorpher Media Player
+
+### 🧩 Task Description
+
+A media player is supposed to play different audio formats, such as `MP3` and `WAV`.
+
+The implementation contains several errors related to dynamic polymorphism.
+
+👉 Your tasks:
+
+1. What is the program output?
+2. Why is the behavior incorrect?
+3. Find at least **4 errors**.
+4. Correct the code.
+
+```C++
+#include <iostream>
+#include <string>
+
+class AudioFile
+{
+public:
+    void play() const
+    {
+        std::cout << "Playing generic audio file\n";
+    }
+
+    virtual void print_info() const
+    {
+        std::cout << "Generic audio file\n";
+    }
+
+    ~AudioFile()
+    {
+        std::cout << "AudioFile destroyed\n";
+    }
+};
+
+class MP3File : public AudioFile
+{
+private:
+    std::string artist;
+
+public:
+    MP3File(const std::string& artist_name)
+        : artist(artist_name)
+    {
+    }
+
+    void play()
+    {
+        std::cout << "Playing MP3 by " << artist << "\n";
+    }
+
+    void print_info()
+    {
+        std::cout << "MP3 file by " << artist << "\n";
+    }
+
+    ~MP3File()
+    {
+        std::cout << "MP3File destroyed\n";
+    }
+};
+
+class WAVFile : public AudioFile
+{
+public:
+    void play() const
+    {
+        std::cout << "Playing WAV file\n";
+    }
+
+    void print_info() const
+    {
+        std::cout << "Uncompressed WAV file\n";
+    }
+
+    ~WAVFile()
+    {
+        std::cout << "WAVFile destroyed\n";
+    }
+};
+
+int main()
+{
+    AudioFile* playlist[2];
+
+    playlist[0] = new MP3File("Daft Punk");
+    playlist[1] = new WAVFile();
+
+    for (int index = 0; index < 2; index++)
+    {
+        playlist[index]->print_info();
+        playlist[index]->play();
+    }
+
+    for (int index = 0; index < 2; index++)
+    {
+        delete playlist[index];
+    }
+
+    return 0;
+}
+```

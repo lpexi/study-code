@@ -262,71 +262,21 @@ int main()
 }
 ```
 
-## 🔴 Section IV: Complex Task – Production System: Quality Control Pipeline
+## 🔴 Section IV: Production System: Quality Control Pipeline
 
 ### 🧩 Task Description
 
-You are working in a **modern manufacturing plant** where products are automatically inspected before leaving the production line.
+You are working in a **modern manufacturing plant** for engines where products are automatically inspected before leaving the production line.
 
 Each product must pass through a **quality control pipeline** consisting of different inspection steps.
 
 The system must be flexible because:
 
-- new inspection methods are added frequently
+- new inspections are added frequently
 - different products require different inspections
 - some inspections share common behavior
-- other capabilities should be modeled as contracts/interfaces
 
----
-
-## 🎯 Your Task
-
-Design and implement a system that models this **quality control pipeline**.
-
-You must first create a **UML class diagram** and then implement the design in C++.
-
----
-
-## 📘 Requirements
-
-Your solution must contain:
-
-1. at least **one abstract class**
-2. at least **one interface**
-3. at least **two concrete product classes**
-4. at least **three concrete inspection classes**
-5. a pipeline that stores and executes inspections polymorphically
-
----
-
-## 🧩 UML Design Task
-
-Create a UML class diagram that shows:
-
-- all classes and interfaces
-- inheritance relationships
-- interface realization relationships
-- important attributes
-- important methods
-- abstract methods marked correctly
-- the interface marked with `<<interface>>`
-- the abstract class marked with `{abstract}` or `<<abstract>>`
-
----
-
-## 🏭 Scenario Details
-
-Each product:
-
-- has a product ID
-- has a name
-- may provide different measurable values such as:
-  - weight
-  - temperature
-  - voltage
-  - visual defect status
-
-Examples of inspection steps:
+At the moment, three inspections exist:
 
 - **Weight Check**  
   Checks whether the product weight is within a tolerance.
@@ -337,77 +287,30 @@ Examples of inspection steps:
 - **Temperature Test**  
   Checks whether the product temperature is within limits.
 
-- **Electrical Test**  
-  Checks voltage or current behavior.
+Beside the capability to perform the inspection, each inspection can create a report including:
+- type of inspection
+- success or failure of the last performed inspection
+- total success-rate of all performed inspections
 
----
+Since this report mechanism is used by other processes and test engineers, it needs to be like a contract, so that it **guarantees**
+that it always behaves/is called in the same way by whichever class uses it.
 
-## 🧠 Design Constraints
+Each product has a product ID, name and may provide different measurable values such as:
+  - weight
+  - temperature
+  - voltage
+  - visual defect status
 
-Your design should include:
+Depending on these measurable values, the corresponding inspections are performed.
 
-### Abstract Class
+The plant produces 2 products at the moment:
+1. A combustion engine (including weight, temperature, visual defect status)
+2. An electric engine (including weight, temperature, voltage, visual defect status)
 
-Use an abstract base class, for example:
-
-```cpp
-class Inspection
-{
-public:
-    virtual bool inspect(const Product& product) const = 0;
-    virtual std::string get_name() const = 0;
-    virtual ~Inspection() = default;
-};
-```
-
-This class represents a general inspection step.
-
----
-
-### Interface
-
-Add at least one interface that describes an additional capability.
-
-Example:
-
-```cpp
-class Reportable
-{
-public:
-    virtual std::string generate_report() const = 0;
-    virtual ~Reportable() = default;
-};
-```
-
-Possible interface ideas:
-
-- `Reportable`
-- `Printable`
-- `Calibratable`
-- `Loggable`
-- `Serializable`
-
----
-
-## 💻 Implementation Task
-
-Implement your UML design in C++.
-
-Your program should:
-
-1. create several products
-2. create several inspection objects
-3. store inspection objects through base-class pointers or references
-4. execute all inspections on each product
-5. print whether each product passes or fails
-6. use polymorphism instead of `if/switch` over inspection types
-
----
-
-## 📌 Example Output
+The products can also create a report based on the performed checks. Example output:
 
 ```text
-Product: Motor A
+Product: Combustion Motor 
 - Weight Check: PASS
 - Temperature Test: FAIL
 - Visual Inspection: PASS
@@ -415,25 +318,54 @@ Product: Motor A
 Final Result: REJECTED
 ```
 
+Your task is to design and implement a system that models this **quality control pipeline**.
+
+You must first create a **UML class diagram** and then implement the design in C++.
+
 ---
 
-## 🧠 Reflection Questions
+
+### 📘 Requirements
+
+Your solution must contain:
+
+1. at least **one abstract class**
+2. at least **one interface**
+3. at least **two concrete products**
+4. at least **three concrete inspections**
+5. a pipeline that stores and executes inspections polymorphically (no fake-polymorphism)
+
+---
+
+### 📌 UML Design Task
+
+Create a UML class diagram that shows:
+
+- all classes and interfaces
+- inheritance and other relationships
+- important attributes
+- important methods
+- abstract classes and methods
+
+---
+
+
+### 💻 Implementation Task
+
+Implement your UML design in C++.
+
+Your main program should:
+
+1. create 2 objects of each product and store them in one common array
+2. perform all necessary inspections on each object
+3. use pointers or references to access the objects
+4. print the report for each product object
+5. print the report for each inspection type at the end of the program 
+
+---
+
+### 🧠 Reflection Questions
 
 1. Which class in your design is abstract and why?
 2. Which interface did you use and what contract does it define?
-3. Where is dynamic polymorphism used?
-4. Why would an `if/switch` solution be less maintainable?
-5. How does your design support adding new inspection types?
-6. What changes are needed if a new inspection, e.g. `LaserInspection`, is added?
-
----
-
-## ⭐ Optional Challenge
-
-Extend your system so that:
-
-- different product types use different inspection pipelines
-- inspections return a score instead of only `PASS` / `FAIL`
-- failed inspections provide a reason
-- the pipeline generates a complete quality report
-- smart pointers are used instead of raw pointers
+3. A new inspection is needed to check the voltage. How does your design support adding the new inspection?

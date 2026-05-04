@@ -5,7 +5,7 @@
 #include <iostream>
 #include <cmath>
 
-class vector2d
+class vector2D
 {
 private:
     std::double_t x;
@@ -17,7 +17,7 @@ public:
      * @brief Default constructor of a new vector2d object
      * Initialize the coordinates to 0.0
      */
-    vector2d() : x(0.0), y(0.0) {}
+    vector2D() : x(0.0), y(0.0) {}
 
     /**
      * @brief Parameterized constructor of a new vector2d object
@@ -25,7 +25,7 @@ public:
      * @param[in] x     X coordinate 
      * @param[in] y     Y coordinate
      */
-    vector2d(std::double_t x, std::double_t y) : x(x), y(y){}
+    vector2D(std::double_t x, std::double_t y) : x(x), y(y){}
 
     /**
      * @brief Getter method for x coordinate
@@ -72,10 +72,10 @@ public:
      * @param[in] precision     Number of decimal places
      * @return std::double_t 
      */
-    std::double_t getMagnitude(std::int_fast16_t precision) const {}
+    std::double_t getMagnitude(std::int_fast16_t precision) const;
 };
 
-std::double_t vector2d::getMagnitude(std::int_fast16_t precision) const
+std::double_t vector2D::getMagnitude(std::int_fast16_t precision) const
 {
     double factor = std::pow(10.0, precision);
     double length = this->getMagnitude();
@@ -86,8 +86,10 @@ std::double_t vector2d::getMagnitude(std::int_fast16_t precision) const
 int main()
 {
     // Part 2
-    vector2d vec1(4, 5);
-    vector2d vec2(1, 9);
+    vector2D vec1(4, 5);
+    vec1.print();
+    vector2D vec2(1, 9);
+    vec2.print();
 
     std::cout << vec1.getMagnitude() << std::endl;
     std::cout << vec1.getMagnitude(3) << std::endl;

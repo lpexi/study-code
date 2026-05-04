@@ -1,35 +1,35 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-using namespace std;        // "using" is bad sytax, wirte std:: before every argument
+// using namespace std;        // "using" is bad sytax, wirte std:: before every argument
 
 class Article {
 public:         // everything is public? Check whar can be private do limit accessability form other functions
-    string name;
+    std::string name;
     double price;
     int stock;
-    string* category;       // Why "string*" (pointer) ??
+    std::string category;       // Why "string*" (pointer) ??
     int id;
 
-    Article(string name, double price, int stock, string category, int id) {        // Dont declare all the params in the bodey, use this sytax insted: name{name}, price{price}, ...,
-        name = name;                        // use this-> as same name              // This prevents a double declare / lookup from the Constructor
+    Article(std::string name, double price, int stock, std::string category, int id) {        // Dont declare all the params in the bodey, use this sytax insted: name{name}, price{price}, ...,
+        this->name = name;                        // use this-> as same name              // This prevents a double declare / lookup from the Constructor
         price = price;                                                              // No validation of any function (if input or outpit makes sense)
         stock = stock;
         this->id = id;                      // no checking for duplicate id's
-        this->category = new string;
-        *this->category = category;         // this->category = category; "this" is alrady a pointer
+        this->category = new std::string;
+        this->category = category;         // this->category = category; "this" is alrady a pointer
     }
 
     void setPrice(double price) {
-        price = price;                      // use "this"
+        this->price = price;                      // use "this"
     }
 
     void sell(int amount) {
-        stock = stock - amount;             // use "this"
+        this->stock = stock - amount;             // use "this"
     }
 
     void restock(int amount) {
-        this->stock += amount;              // unify syntax (=+ to + ore - to =-)
+        this->stock =+ amount;              // unify syntax (=+ to + ore - to =-)
     }
 
     double applyDiscount(double percent) {
@@ -41,19 +41,23 @@ public:         // everything is public? Check whar can be private do limit acce
         return price;
     }
 
-    bool isAvailable() {        // change to const function as it dose not change a value
-        if (stock > 0)          // change to <= 0
+    const bool isAvailable() {        // change to const function as it dose not change a value
+        if (stock >= 0)          // change to <= 0
+        {
             return true;
+        } 
         else
+        {
             return false;
+        }
     }
 
     void printInfo() {          // Code the method in a function not in the constructor
-        cout << "Article: " << name << endl;
-        cout << "Category: " << *category << endl;
-        cout << "Price: " << price << endl;
-        cout << "Stock: " << stock << endl;
-        cout << "ID: " << id << endl;
+        std::cout << "Article: " << name << std::endl;
+        std::cout << "Category: " << category << std::endl;
+        std::cout << "Price: " << price << std::endl;
+        std::cout << "Stock: " << stock << std::endl;
+        std::cout << "ID: " << id << std::endl;
     }
 };
 
@@ -65,7 +69,7 @@ int main() {// bad naming "a" use someting more fitting, which describes the art
     a.price = -100;                                             // no direct access, we have a funcrion 
     a.applyDiscount(150);
 
-    if (a.isAvailable()) cout << "Article available" << endl;
+    if (a.isAvailable()) std::cout << "Article available" << std::endl;
 
     a.printInfo();
 }

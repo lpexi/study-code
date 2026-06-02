@@ -3,29 +3,31 @@ using namespace std;
 
 int main() {
 
-    int arr[] = {7, 4, 5, 2};
-    int n = 4;
+    int arr[] = {7, 4, 5, 2, 2, 4, 5, 1};
+    int n = 8;
     int temp;
 
     //Ausgabe des unsortierten Arrays
-    cout << "Unsortiertes Array:";
+    cout << "Unsortiertes Array: ";
     for (int k = 0; k < n; k++)
         cout << arr[k] << " ";
     cout << endl;
 
     //Bubble Sort Algorithmus
-    for (int i = 0; i < n - 1; i++) {
-
+    for (int i = 0; i < n - 1; i++) 
+    {
         cout << "\nLauf " << (i+1) << ":" << endl;
 
-        for (int j = 0; j < n - 1 - i; j++) {
-
-            if (arr[j] > arr[j+1]) {
-                temp       = arr[j];
-                arr[j]     = arr[j+1];
-                arr[j+1]   = temp;
+        for (int j = 0; j < n - 1 - i; j++)         
+        {
+            if (arr[j] > arr[j+1])      //Vergleich von zwei benachbarten Elementen, wenn das rehcte größer als das linkie ist, werden die Elemente vertauscht
+            {
+                temp       = arr[j];    // temp wird auf den Inhalt j vom Array gesetzt
+                arr[j]     = arr[j+1];  // Das uhrsprüngloche array wird auf die benachbarte Zahl gesetzt
+                arr[j+1]   = temp;      // Die benachbarte Zahl wird auf die im temp gespeicherte Zahl gesetzt. (Die originelle Zahl)
                 cout << "  Position  " << j+1 << " <-> " << (j+2) << " getauscht -> ";
-            } else {
+            } else 
+            {
                 cout << "  kein Tausch -> ";
             }
 

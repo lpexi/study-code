@@ -4,11 +4,16 @@
 
 int main()
 {  
-    Sensor sensor{50.0, 5.0};
+    Sensor sensorOutside{50.0, 5.0};
+    Sensor sensorInside{20.0, 5.0};
 
-    sensor.celciusToFahrenheit();
-    sensor.calibrate();
-    sensor.printReading();
+    sensorOutside.celciusToFahrenheit();
+    sensorOutside.calibrate();
+    sensorOutside.printReading();
+
+    sensorInside.celciusToFahrenheit();
+    sensorInside.calibrate();
+    sensorInside.printReading();
 
     return 0;
 }
